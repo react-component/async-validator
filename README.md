@@ -11,8 +11,8 @@
 [npm-url]: http://npmjs.org/package/@rc-component/async-validator
 [travis-image]: https://img.shields.io/travis/react-component/async-validator/master?style=flat-square
 [travis-url]: https://travis-ci.com/react-component/async-validator
-[github-actions-image]: https://github.com/react-component/async-validator/workflows/CI/badge.svg
-[github-actions-url]: https://github.com/react-component/async-validator/actions
+[github-actions-image]: https://github.com/react-component/async-validator/actions/workflows/ci.yml/badge.svg
+[github-actions-url]: https://github.com/react-component/async-validator/actions/workflows/ci.yml
 [codecov-image]: https://img.shields.io/codecov/c/github/react-component/async-validator/master.svg?style=flat-square
 [codecov-url]: https://app.codecov.io/gh/react-component/async-validator
 [david-url]: https://david-dm.org/react-component/async-validator
