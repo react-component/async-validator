@@ -1,4 +1,4 @@
-import { ExecuteValidator } from '../interface';
+import type { ExecuteValidator } from '../interface';
 import rules from '../rule';
 
 const required: ExecuteValidator = (rule, value, callback, source, options) => {

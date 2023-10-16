@@ -1,4 +1,4 @@
-import { ExecuteRule } from '../interface';
+import type { ExecuteRule } from '../interface';
 import { format } from '../util';
 
 const range: ExecuteRule = (rule, value, source, errors, options) => {

@@ -1,4 +1,4 @@
-import { ExecuteValidator } from '../interface';
+import type { ExecuteValidator } from '../interface';
 import rules from '../rule';
 import { isEmptyValue } from '../util';
 

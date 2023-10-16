@@ -8,7 +8,7 @@ import {
 } from './util';
 import validators from './validator/index';
 import { messages as defaultMessages, newMessages } from './messages';
-import {
+import type {
   InternalRuleItem,
   InternalValidateMessages,
   Rule,
@@ -83,8 +83,10 @@ class Schema {
   validate(
     source: Values,
     option?: ValidateOption,
+    // eslint-disable-next-line @typescript-eslint/unified-signatures
     callback?: ValidateCallback,
   ): Promise<Values>;
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
   validate(source: Values, callback: ValidateCallback): Promise<Values>;
   validate(source: Values): Promise<Values>;
 

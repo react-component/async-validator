@@ -50,7 +50,7 @@ export interface RuleItem {
   min?: number; // Range of type 'string' and 'array'
   max?: number; // Range of type 'string' and 'array'
   len?: number; // Length of type 'string' and 'array'
-  enum?: Array<string | number | boolean | null | undefined>; // possible values of type 'enum'
+  enum?: (string | number | boolean | null | undefined)[]; // possible values of type 'enum'
   whitespace?: boolean;
   fields?: Record<string, Rule>; // ignore when without required
   options?: ValidateOption;

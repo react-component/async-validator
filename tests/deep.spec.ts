@@ -1,4 +1,5 @@
-import Schema, { Rules } from '../src';
+import type { Rules } from '../src';
+import Schema from '../src';
 
 describe('deep', () => {
   it('deep array specific validation', done => {
