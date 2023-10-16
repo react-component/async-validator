@@ -19,9 +19,9 @@ describe('deep', () => {
       (errors, fields) => {
         expect(errors.length).toBe(1);
         expect(fields).toMatchInlineSnapshot(`
-          Object {
-            "v.0": Array [
-              Object {
+          {
+            "v.0": [
+              {
                 "field": "v.0",
                 "fieldValue": 1,
                 "message": "v.0 is not a string",
@@ -55,9 +55,9 @@ describe('deep', () => {
       (errors, fields) => {
         expect(errors.length).toBe(1);
         expect(fields).toMatchInlineSnapshot(`
-          Object {
-            "v.a": Array [
-              Object {
+          {
+            "v.a": [
+              {
                 "field": "v.a",
                 "fieldValue": 1,
                 "message": "v.a is not a string",
@@ -86,16 +86,16 @@ describe('deep', () => {
         (errors, fields) => {
           expect(errors.length).toBe(2);
           expect(fields).toMatchInlineSnapshot(`
-            Object {
-              "v.0": Array [
-                Object {
+            {
+              "v.0": [
+                {
                   "field": "v.0",
                   "fieldValue": 1,
                   "message": "v.0 is not a string",
                 },
               ],
-              "v.1": Array [
-                Object {
+              "v.1": [
+                {
                   "field": "v.1",
                   "fieldValue": 2,
                   "message": "v.1 is not a string",
@@ -124,16 +124,16 @@ describe('deep', () => {
         (errors, fields) => {
           expect(errors.length).toBe(2);
           expect(fields).toMatchInlineSnapshot(`
-            Object {
-              "v.0": Array [
-                Object {
+            {
+              "v.0": [
+                {
                   "field": "v.0",
                   "fieldValue": 1,
                   "message": "v.0 cannot be greater than 0",
                 },
               ],
-              "v.1": Array [
-                Object {
+              "v.1": [
+                {
                   "field": "v.1",
                   "fieldValue": 2,
                   "message": "v.1 cannot be greater than 0",
@@ -142,13 +142,13 @@ describe('deep', () => {
             }
           `);
           expect(errors).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "v.0",
                 "fieldValue": 1,
                 "message": "v.0 cannot be greater than 0",
               },
-              Object {
+              {
                 "field": "v.1",
                 "fieldValue": 2,
                 "message": "v.1 cannot be greater than 0",
@@ -195,11 +195,11 @@ describe('deep', () => {
 
       new Schema(descriptor).validate(obj, errors => {
         expect(errors).toMatchInlineSnapshot(`
-          Array [
-            Object {
+          [
+            {
               "field": "test",
-              "fieldValue": Array [
-                Object {
+              "fieldValue": [
+                {
                   "name": "aa",
                 },
               ],

@@ -31,9 +31,9 @@ describe('array', () => {
       (errors, fields) => {
         expect(errors.length).toBe(1);
         expect(fields).toMatchInlineSnapshot(`
-          Object {
-            "v": Array [
-              Object {
+          {
+            "v": [
+              {
                 "field": "v",
                 "fieldValue": "",
                 "message": "v is not an array",
