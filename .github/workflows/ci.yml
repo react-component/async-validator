@@ -20,4 +20,7 @@ jobs:
         run: npm run tsc && npm run compile
       - name: test
         run: npm run coverage
-        
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
