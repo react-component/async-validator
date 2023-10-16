@@ -1,19 +1,18 @@
 /* eslint no-console:0 */
 
-import {
+import type {
   ValidateError,
   ValidateOption,
   RuleValuePackage,
   InternalRuleItem,
   SyncErrorType,
-  RuleType,
   Value,
-  Values,
+  Values
 } from './interface';
 
 const formatRegExp = /%[sdj%]/g;
 
-declare var ASYNC_VALIDATOR_NO_WARNING;
+declare let ASYNC_VALIDATOR_NO_WARNING;
 
 export let warning: (type: string, errors: SyncErrorType[]) => void = () => {};
 
@@ -58,10 +57,11 @@ export function format(
   let i = 0;
   const len = args.length;
   if (typeof template === 'function') {
+    // eslint-disable-next-line prefer-spread
     return template.apply(null, args);
   }
   if (typeof template === 'string') {
-    let str = template.replace(formatRegExp, x => {
+    const str = template.replace(formatRegExp, x => {
       if (x === '%%') {
         return '%';
       }
@@ -223,6 +223,7 @@ export function asyncMap(
   const results: ValidateError[] = [];
   const pending = new Promise<Values>((resolve, reject) => {
     const next = (errors: ValidateError[]) => {
+      // eslint-disable-next-line prefer-spread
       results.push.apply(results, errors);
       total++;
       if (total === objArrLength) {

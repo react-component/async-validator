@@ -1,4 +1,4 @@
-import { ExecuteRule } from '../interface';
+import type { ExecuteRule } from '../interface';
 import { format, isEmptyValue } from '../util';
 
 const required: ExecuteRule = (rule, value, source, errors, options, type) => {

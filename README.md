@@ -1,31 +1,37 @@
-# async-validator
+# @rc-component/async-validator
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
-[![npm bundle size (minified + gzip)][bundlesize-image]][bundlesize-url]
+[![build status][github-actions-image]][github-actions-url]
+[![Codecov][codecov-image]][codecov-url]
+[![bundle size][bundlephobia-image]][bundlephobia-url]
+[![dumi][dumi-image]][dumi-url]
 
-[npm-image]: https://img.shields.io/npm/v/async-validator.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/async-validator
-[travis-image]:https://app.travis-ci.com/yiminghe/async-validator.svg?branch=master
-[travis-url]: https://app.travis-ci.com/github/yiminghe/async-validator
-[coveralls-image]: https://img.shields.io/coveralls/yiminghe/async-validator.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/yiminghe/async-validator?branch=master
-[node-image]: https://img.shields.io/badge/node.js-%3E=4.0.0-green.svg?style=flat-square
-[node-url]: https://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/async-validator.svg?style=flat-square
-[download-url]: https://npmjs.org/package/async-validator
-[bundlesize-image]: https://img.shields.io/bundlephobia/minzip/async-validator.svg?label=gzip%20size
-[bundlesize-url]: https://bundlephobia.com/result?p=async-validator
+[npm-image]: http://img.shields.io/npm/v/@rc-component/async-validator.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/@rc-component/async-validator
+[travis-image]: https://img.shields.io/travis/react-component/async-validator/master?style=flat-square
+[travis-url]: https://travis-ci.com/react-component/async-validator
+[github-actions-image]: https://github.com/react-component/async-validator/workflows/CI/badge.svg
+[github-actions-url]: https://github.com/react-component/async-validator/actions
+[codecov-image]: https://img.shields.io/codecov/c/github/react-component/async-validator/master.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/gh/react-component/async-validator
+[david-url]: https://david-dm.org/react-component/async-validator
+[david-image]: https://david-dm.org/react-component/async-validator/status.svg?style=flat-square
+[david-dev-url]: https://david-dm.org/react-component/async-validator?type=dev
+[david-dev-image]: https://david-dm.org/react-component/async-validator/dev-status.svg?style=flat-square
+[download-image]: https://img.shields.io/npm/dm/@rc-component/async-validator.svg?style=flat-square
+[download-url]: https://npmjs.org/package/@rc-component/async-validator
+[bundlephobia-url]: https://bundlephobia.com/package/@rc-component/async-validator
+[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/@rc-component/async-validator
+[dumi-url]: https://github.com/umijs/dumi
+[dumi-image]: https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square
 
 Validate form asynchronous. A variation of https://github.com/freeformsystems/async-validate
 
 ## Install
 
 ```bash
-npm i async-validator
+npm i @rc-component/async-validator
 ```
 
 ## Usage
@@ -33,7 +39,7 @@ npm i async-validator
 Basic usage involves defining a descriptor, assigning it to a schema and passing the object to be validated and a callback function to the `validate` method of the schema:
 
 ```js
-import Schema from 'async-validator';
+import Schema from '@rc-component/async-validator';
 const descriptor = {
   name: {
     type: 'string',
@@ -117,7 +123,7 @@ function(rule, value, callback, source, options)
 The options passed to `validate` or `asyncValidate` are passed on to the validation functions so that you may reference transient data (such as model references) in validation functions. However, some option names are reserved; if you use these properties of the options object they are overwritten. The reserved properties are `messages`, `exception` and `error`.
 
 ```js
-import Schema from 'async-validator';
+import Schema from '@rc-component/async-validator';
 const descriptor = {
   name(rule, value, callback, source, options) {
     const errors = [];
@@ -303,7 +309,7 @@ Note that `defaultField` is expanded to `fields`, see [deep rules](#deep-rules).
 Sometimes it is necessary to transform a value before validation, possibly to coerce the value or to sanitize it in some way. To do this add a `transform` function to the validation rule. The property is transformed prior to validation and returned as promise result or callback result when pass validation.
 
 ```js
-import Schema from 'async-validator';
+import Schema from '@rc-component/async-validator';
 const descriptor = {
   name: {
     type: 'string',
@@ -354,7 +360,7 @@ Potentially you may require the same schema validation rules for different langu
 In this scenario you could just provide your own messages for the language and assign it to the schema:
 
 ```js
-import Schema from 'async-validator';
+import Schema from '@rc-component/async-validator';
 const cn = {
   required: '%s 必填',
 };
@@ -432,7 +438,7 @@ const fields = {
 ### How to avoid global warning
 
 ```js
-import Schema from 'async-validator';
+import Schema from '@rc-component/async-validator';
 Schema.warning = function(){};
 ```
 

@@ -1,4 +1,4 @@
-import { ExecuteRule, Value } from '../interface';
+import type { ExecuteRule, Value } from '../interface';
 import { format } from '../util';
 import required from './required';
 import getUrlRegex from './url';

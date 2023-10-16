@@ -1,6 +1,6 @@
 import { isEmptyValue } from '../util';
 import rules from '../rule';
-import { ExecuteValidator } from '../interface';
+import type { ExecuteValidator } from '../interface';
 
 const boolean: ExecuteValidator = (rule, value, callback, source, options) => {
   const errors: string[] = [];

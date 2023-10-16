@@ -2,7 +2,7 @@ import Schema from '../src';
 
 describe('string', () => {
   it('works for none require', done => {
-    let data = {
+    const data = {
       v: '',
     };
     new Schema({
