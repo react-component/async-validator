@@ -1,18 +1,18 @@
-import string from './string';
+import any from './any';
+import array from './array';
+import boolean from './boolean';
+import date from './date';
+import enumValidator from './enum';
+import float from './float';
+import integer from './integer';
 import method from './method';
 import number from './number';
-import boolean from './boolean';
-import regexp from './regexp';
-import integer from './integer';
-import float from './float';
-import array from './array';
 import object from './object';
-import enumValidator from './enum';
 import pattern from './pattern';
-import date from './date';
+import regexp from './regexp';
 import required from './required';
+import string from './string';
 import type from './type';
-import any from './any';
 
 export default {
   string,

@@ -1,29 +1,22 @@
-import {
-  format,
-  complementError,
-  asyncMap,
-  warning,
-  deepMerge,
-  convertFieldsError,
-} from './util';
-import validators from './validator/index';
-import { messages as defaultMessages, newMessages } from './messages';
 import type {
   InternalRuleItem,
   InternalValidateMessages,
   Rule,
   RuleItem,
-  Rules,
-  ValidateCallback,
-  ValidateMessages,
-  ValidateOption,
-  Values,
   RuleValuePackage,
+  Rules,
+  SyncErrorType,
+  ValidateCallback,
   ValidateError,
   ValidateFieldsError,
-  SyncErrorType,
+  ValidateMessages,
+  ValidateOption,
   ValidateResult,
+  Values,
 } from './interface';
+import { messages as defaultMessages, newMessages } from './messages';
+import { asyncMap, complementError, convertFieldsError, deepMerge, format, warning } from './util';
+import validators from './validator/index';
 
 export * from './interface';
 
@@ -37,9 +30,7 @@ class Schema {
   // ========================= Static =========================
   static register = function register(type: string, validator) {
     if (typeof validator !== 'function') {
-      throw new Error(
-        'Cannot register a validator by type, validator is not a function',
-      );
+      throw new Error('Cannot register a validator by type, validator is not a function');
     }
     validators[type] = validator;
   };
@@ -124,10 +115,10 @@ class Schema {
         callback(null, source);
       } else {
         fields = convertFieldsError(errors);
-        (callback as (
-          errors: ValidateError[],
-          fields: ValidateFieldsError,
-        ) => void)(errors, fields);
+        (callback as (errors: ValidateError[], fields: ValidateFieldsError) => void)(
+          errors,
+          fields,
+        );
       }
     }
 
@@ -189,8 +180,7 @@ class Schema {
         const rule = data.rule;
         let deep =
           (rule.type === 'object' || rule.type === 'array') &&
-          (typeof rule.fields === 'object' ||
-            typeof rule.defaultField === 'object');
+          (typeof rule.fields === 'object' || typeof rule.defaultField === 'object');
         deep = deep && (rule.required || (!rule.required && data.value));
         rule.field = data.field;
 
@@ -226,16 +216,9 @@ class Schema {
             // go deeper
             if (rule.required && !data.value) {
               if (rule.message !== undefined) {
-                filledErrors = []
-                  .concat(rule.message)
-                  .map(complementError(rule, source));
+                filledErrors = [].concat(rule.message).map(complementError(rule, source));
               } else if (options.error) {
-                filledErrors = [
-                  options.error(
-                    rule,
-                    format(options.messages.required, rule.field),
-                  ),
-                ];
+                filledErrors = [options.error(rule, format(options.messages.required, rule.field))];
               }
               return doIt(filledErrors);
             }
@@ -255,12 +238,8 @@ class Schema {
 
             Object.keys(fieldsSchema).forEach(field => {
               const fieldSchema = fieldsSchema[field];
-              const fieldSchemaList = Array.isArray(fieldSchema)
-                ? fieldSchema
-                : [fieldSchema];
-              paredFieldsSchema[field] = fieldSchemaList.map(
-                addFullField.bind(null, field),
-              );
+              const fieldSchemaList = Array.isArray(fieldSchema) ? fieldSchema : [fieldSchema];
+              paredFieldsSchema[field] = fieldSchemaList.map(addFullField.bind(null, field));
             });
             const schema = new Schema(paredFieldsSchema);
             schema.messages(options.messages);

@@ -1,4 +1,4 @@
-import Schema, { ValidateMessages } from '../src';
+import Schema from '../src';
 
 describe('messages', () => {
   it('can call messages', done => {
