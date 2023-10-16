@@ -275,26 +275,26 @@ describe('validator', () => {
           expect(errors[5].message).toBe('e6');
           expect(fields.v[0].fieldValue).toBe(2);
           expect(fields).toMatchInlineSnapshot(`
-            Object {
-              "v": Array [
+            {
+              "v": [
                 [Error: e1],
                 [Error: e2],
               ],
-              "v2": Array [
+              "v2": [
                 [Error: e3],
               ],
-              "v3": Array [
-                Object {
+              "v3": [
+                {
                   "field": "v3",
                   "fieldValue": undefined,
                   "message": "v3 fails",
                 },
-                Object {
+                {
                   "field": "v3",
                   "fieldValue": undefined,
                   "message": "e5",
                 },
-                Object {
+                {
                   "field": "v3",
                   "fieldValue": undefined,
                   "message": "e6",

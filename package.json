@@ -24,7 +24,6 @@
   ],
   "scripts": {
     "compile": "father build",
-    "coverage": "father test --coverage",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "gh-pages": "npm run docs:build && father doc deploy",
@@ -34,7 +33,8 @@
     "prettier": "prettier . --write",
     "postpublish": "npm run gh-pages",
     "start": "dumi dev",
-    "test": "father test",
+    "test": "rc-test",
+    "coverage": "rc-test --coverage",
     "tsc": "tsc --noEmit"
   },
   "pre-commit": [
@@ -61,6 +61,7 @@
     "lint-staged": "^15.0.1",
     "np": "^8.0.0",
     "prettier": "^2.8.8",
+    "rc-test": "^7.0.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "5.x"
