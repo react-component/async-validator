@@ -2,13 +2,19 @@
   "name": "@rc-component/async-validator",
   "version": "4.2.5",
   "description": "Validate form asynchronous",
-  "engines": {
-    "node": ">=14.x"
-  },
   "keywords": [
     "async-validator",
     "form"
   ],
+  "homepage": "http://github.com/react-component/async-validator",
+  "bugs": {
+    "url": "http://github.com/react-component/async-validator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:react-component/async-validator.git"
+  },
+  "license": "MIT",
   "main": "./lib/index",
   "module": "./es/index",
   "types": "./lib/index.d.ts",
@@ -16,37 +22,29 @@
     "es",
     "lib"
   ],
-  "homepage": "http://github.com/react-component/async-validator",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:react-component/async-validator.git"
-  },
-  "bugs": {
-    "url": "http://github.com/react-component/async-validator/issues"
-  },
-  "license": "MIT",
   "scripts": {
-    "start": "dumi dev",
+    "compile": "father build",
+    "coverage": "father test --coverage",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
-    "compile": "father build",
-    "prepublishOnly": "npm run compile && np --yolo --no-publish",
-    "postpublish": "npm run gh-pages",
-    "lint": "eslint src --ext .tsx,.ts,.jsx,.js",
-    "test": "father test",
-    "tsc": "tsc --noEmit",
-    "coverage": "father test --coverage",
     "gh-pages": "npm run docs:build && father doc deploy",
-    "now-build": "npm run docs:build"
+    "lint": "eslint src --ext .tsx,.ts,.jsx,.js",
+    "now-build": "npm run docs:build",
+    "prepublishOnly": "npm run compile && np --yolo --no-publish",
+    "prettier": "prettier . --write",
+    "postpublish": "npm run gh-pages",
+    "start": "dumi dev",
+    "test": "father test",
+    "tsc": "tsc --noEmit"
   },
+  "pre-commit": [
+    "lint-staged"
+  ],
   "lint-staged": {
     "*.{tsx,js,jsx,ts,json}": [
       "prettier --write"
     ]
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
   "dependencies": {
     "@babel/runtime": "^7.23.1"
   },
@@ -66,6 +64,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "5.x"
+  },
+  "engines": {
+    "node": ">=14.x"
   },
   "publishConfig": {
     "access": "public"

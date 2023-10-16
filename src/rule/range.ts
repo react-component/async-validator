@@ -41,9 +41,7 @@ const range: ExecuteRule = (rule, value, source, errors, options) => {
   } else if (max && !min && val > rule.max) {
     errors.push(format(options.messages[key].max, rule.fullField, rule.max));
   } else if (min && max && (val < rule.min || val > rule.max)) {
-    errors.push(
-      format(options.messages[key].range, rule.fullField, rule.min, rule.max),
-    );
+    errors.push(format(options.messages[key].range, rule.fullField, rule.min, rule.max));
   }
 };
 

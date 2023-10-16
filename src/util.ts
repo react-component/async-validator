@@ -1,13 +1,13 @@
 /* eslint no-console:0 */
 
 import type {
+  InternalRuleItem,
+  RuleValuePackage,
+  SyncErrorType,
   ValidateError,
   ValidateOption,
-  RuleValuePackage,
-  InternalRuleItem,
-  SyncErrorType,
   Value,
-  Values
+  Values,
 } from './interface';
 
 const formatRegExp = /%[sdj%]/g;
@@ -37,9 +37,7 @@ if (
   };
 }
 
-export function convertFieldsError(
-  errors: ValidateError[],
-): Record<string, ValidateError[]> {
+export function convertFieldsError(errors: ValidateError[]): Record<string, ValidateError[]> {
   if (!errors || !errors.length) return null;
   const fields = {};
   errors.forEach(error => {
@@ -50,10 +48,7 @@ export function convertFieldsError(
   return fields;
 }
 
-export function format(
-  template: ((...args: any[]) => string) | string,
-  ...args: any[]
-): string {
+export function format(template: ((...args: any[]) => string) | string, ...args: any[]): string {
   let i = 0;
   const len = args.length;
   if (typeof template === 'function') {
@@ -72,7 +67,7 @@ export function format(
         case '%s':
           return String(args[i++]);
         case '%d':
-          return (Number(args[i++]) as unknown) as string;
+          return Number(args[i++]) as unknown as string;
         case '%j':
           try {
             return JSON.stringify(args[i++]);
@@ -176,20 +171,14 @@ export class AsyncValidationError extends Error {
   errors: ValidateError[];
   fields: Record<string, ValidateError[]>;
 
-  constructor(
-    errors: ValidateError[],
-    fields: Record<string, ValidateError[]>,
-  ) {
+  constructor(errors: ValidateError[], fields: Record<string, ValidateError[]>) {
     super('Async Validation Error');
     this.errors = errors;
     this.fields = fields;
   }
 }
 
-type ValidateFunc = (
-  data: RuleValuePackage,
-  doIt: (errors: ValidateError[]) => void,
-) => void;
+type ValidateFunc = (data: RuleValuePackage, doIt: (errors: ValidateError[]) => void) => void;
 
 export function asyncMap(
   objArr: Record<string, RuleValuePackage[]>,
@@ -212,10 +201,7 @@ export function asyncMap(
     pending.catch(e => e);
     return pending;
   }
-  const firstFields =
-    option.firstFields === true
-      ? Object.keys(objArr)
-      : option.firstFields || [];
+  const firstFields = option.firstFields === true ? Object.keys(objArr) : option.firstFields || [];
 
   const objArrKeys = Object.keys(objArr);
   const objArrLength = objArrKeys.length;
@@ -229,9 +215,7 @@ export function asyncMap(
       if (total === objArrLength) {
         callback(results);
         return results.length
-          ? reject(
-              new AsyncValidationError(results, convertFieldsError(results)),
-            )
+          ? reject(new AsyncValidationError(results, convertFieldsError(results)))
           : resolve(source);
       }
     };
@@ -252,9 +236,7 @@ export function asyncMap(
   return pending;
 }
 
-function isErrorObj(
-  obj: ValidateError | string | (() => string),
-): obj is ValidateError {
+function isErrorObj(obj: ValidateError | string | (() => string)): obj is ValidateError {
   return !!(obj && (obj as ValidateError).message !== undefined);
 }
 
@@ -285,7 +267,7 @@ export function complementError(rule: InternalRuleItem, source: Values) {
     return {
       message: typeof oe === 'function' ? oe() : oe,
       fieldValue,
-      field: ((oe as unknown) as ValidateError).field || rule.fullField,
+      field: (oe as unknown as ValidateError).field || rule.fullField,
     };
   };
 }

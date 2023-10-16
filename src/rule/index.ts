@@ -1,9 +1,9 @@
-import required from './required';
-import whitespace from './whitespace';
-import type from './type';
-import range from './range';
 import enumRule from './enum';
 import pattern from './pattern';
+import range from './range';
+import required from './required';
+import type from './type';
+import whitespace from './whitespace';
 
 export default {
   required,

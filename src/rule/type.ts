@@ -6,7 +6,8 @@ import getUrlRegex from './url';
 
 const pattern = {
   // http://emailregex.com/
-  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+\.)+[a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]{2,}))$/,
+  email:
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+\.)+[a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]{2,}))$/,
   // url: new RegExp(
   //   '^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$',
   //   'i',
@@ -55,18 +56,10 @@ const types = {
     return typeof value === 'function';
   },
   email(value: Value) {
-    return (
-      typeof value === 'string' &&
-      value.length <= 320 &&
-      !!value.match(pattern.email)
-    );
+    return typeof value === 'string' && value.length <= 320 && !!value.match(pattern.email);
   },
   url(value: Value) {
-    return (
-      typeof value === 'string' &&
-      value.length <= 2048 &&
-      !!value.match(getUrlRegex())
-    );
+    return typeof value === 'string' && value.length <= 2048 && !!value.match(getUrlRegex());
   },
   hex(value: Value) {
     return typeof value === 'string' && !!value.match(pattern.hex);
@@ -94,15 +87,11 @@ const type: ExecuteRule = (rule, value, source, errors, options) => {
   const ruleType = rule.type;
   if (custom.indexOf(ruleType) > -1) {
     if (!types[ruleType](value)) {
-      errors.push(
-        format(options.messages.types[ruleType], rule.fullField, rule.type),
-      );
+      errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
     }
     // straight typeof check
   } else if (ruleType && typeof value !== rule.type) {
-    errors.push(
-      format(options.messages.types[ruleType], rule.fullField, rule.type),
-    );
+    errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
   }
 };
 

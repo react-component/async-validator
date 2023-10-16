@@ -211,11 +211,7 @@ describe('asyncValidator', () => {
               return new Promise((resolve, reject) => {
                 setTimeout(() => {
                   reject([
-                    new Error(
-                      typeof rule.message === 'function'
-                        ? rule.message()
-                        : rule.message,
-                    ),
+                    new Error(typeof rule.message === 'function' ? rule.message() : rule.message),
                   ]);
                 }, 100);
               });

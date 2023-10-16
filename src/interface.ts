@@ -117,9 +117,7 @@ export type ExecuteValidator = (
 ) => void;
 
 // >>>>> Message
-type ValidateMessage<T extends any[] = unknown[]> =
-  | string
-  | ((...args: T) => string);
+type ValidateMessage<T extends any[] = unknown[]> = string | ((...args: T) => string);
 type FullField = string | undefined;
 type EnumString = string | undefined;
 type Pattern = string | RegExp | undefined;

@@ -8,15 +8,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@@/*": [
-        "src/.umi/*"
-      ],
-      "@rc-component/async-validator": [
-        "src/index.ts"
-      ]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"],
+      "@rc-component/async-validator": ["src/index.ts"]
     }
   }
 }
