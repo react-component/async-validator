@@ -39,3 +39,4 @@ coverage
 .dumi/tmp-production
 dist
 .docs-dist
+.vscode

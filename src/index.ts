@@ -145,6 +145,13 @@ class Schema {
             source = { ...source };
           }
           value = source[z] = rule.transform(value);
+          if (!rule.type) {
+            if (typeof value === 'number') {
+              rule.type = 'number';
+            } else if (Array.isArray(value)) {
+              rule.type = 'array';
+            }
+          }
         }
         if (typeof rule === 'function') {
           rule = {

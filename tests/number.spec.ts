@@ -109,4 +109,32 @@ describe('number', () => {
         done();
       });
   });
+  it('transform number', done => {
+    const value = { v: 0 };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(value.v).toBe(0);
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: 0 });
+        done();
+      });
+  });
+  it('transform array', done => {
+    const value = { v: [0, 1] };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(value.v).toEqual([0, 1]);
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: [0, 1] });
+        done();
+      });
+  });
 });

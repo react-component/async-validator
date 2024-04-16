@@ -222,7 +222,7 @@ describe('deep', () => {
         testArray: [],
       };
       const validator = new Schema(descriptor);
-      validator.validate(record, (errors, fields) => {
+      validator.validate(record, () => {
         done();
       });
     });
