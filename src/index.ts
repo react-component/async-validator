@@ -146,10 +146,7 @@ class Schema {
             source = { ...source };
           }
           value = source[z] = rule.transform(value);
-          if (!rule.type) {
-            const type = Array.isArray(value) ? 'array' : typeof value;
-            rule.type = type as RuleType;
-          }
+          rule.type ??= (Array.isArray(value) ? 'array' : typeof value) as RuleType;
         }
         if (typeof rule === 'function') {
           rule = {
