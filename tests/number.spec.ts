@@ -109,6 +109,20 @@ describe('number', () => {
         done();
       });
   });
+  it('transform string', done => {
+    const value = { v: 'a' };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(value.v).toBe('a');
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: 'a' });
+        done();
+      });
+  });
   it('transform number', done => {
     const value = { v: 0 };
     new Schema({
