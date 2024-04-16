@@ -109,4 +109,56 @@ describe('number', () => {
         done();
       });
   });
+  it('transform type', done => {
+    const value = { v: 'a' };
+    new Schema({
+      v: { required: true, type: 'number', transform: () => 0 },
+    })
+      .validate(value, errors => {
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: 0 });
+        done();
+      });
+  });
+  it('transform string', done => {
+    const value = { v: 'a' };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: 'a' });
+        done();
+      });
+  });
+  it('transform number', done => {
+    const value = { v: 0 };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: 0 });
+        done();
+      });
+  });
+  it('transform array', done => {
+    const value = { v: [0, 1] };
+    new Schema({
+      v: { required: true, transform: v => v },
+    })
+      .validate(value, errors => {
+        expect(errors).toBeFalsy();
+      })
+      .then(source => {
+        expect(source).toEqual({ v: [0, 1] });
+        done();
+      });
+  });
 });
