@@ -4,7 +4,6 @@
 [![npm download][download-image]][download-url]
 [![build status][github-actions-image]][github-actions-url]
 [![Codecov][codecov-image]][codecov-url]
-[![bundle size][bundlephobia-image]][bundlephobia-url]
 [![dumi][dumi-image]][dumi-url]
 
 [npm-image]: http://img.shields.io/npm/v/@rc-component/async-validator.svg?style=flat-square
