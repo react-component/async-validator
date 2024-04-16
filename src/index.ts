@@ -3,6 +3,7 @@ import type {
   InternalValidateMessages,
   Rule,
   RuleItem,
+  RuleType,
   RuleValuePackage,
   Rules,
   SyncErrorType,
@@ -146,11 +147,8 @@ class Schema {
           }
           value = source[z] = rule.transform(value);
           if (!rule.type) {
-            if (typeof value === 'number') {
-              rule.type = 'number';
-            } else if (Array.isArray(value)) {
-              rule.type = 'array';
-            }
+            const type = Array.isArray(value) ? 'array' : typeof value;
+            rule.type = type as RuleType;
           }
         }
         if (typeof rule === 'function') {
