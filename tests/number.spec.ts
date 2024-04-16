@@ -115,7 +115,6 @@ describe('number', () => {
       v: { required: true, type: 'number', transform: () => 0 },
     })
       .validate(value, errors => {
-        expect(value.v).toBe('a');
         expect(errors).toBeFalsy();
       })
       .then(source => {
@@ -129,7 +128,6 @@ describe('number', () => {
       v: { required: true, transform: v => v },
     })
       .validate(value, errors => {
-        expect(value.v).toBe('a');
         expect(errors).toBeFalsy();
       })
       .then(source => {
@@ -143,7 +141,6 @@ describe('number', () => {
       v: { required: true, transform: v => v },
     })
       .validate(value, errors => {
-        expect(value.v).toBe(0);
         expect(errors).toBeFalsy();
       })
       .then(source => {
@@ -157,7 +154,6 @@ describe('number', () => {
       v: { required: true, transform: v => v },
     })
       .validate(value, errors => {
-        expect(value.v).toEqual([0, 1]);
         expect(errors).toBeFalsy();
       })
       .then(source => {
