@@ -161,4 +161,13 @@ describe('number', () => {
         done();
       });
   });
+  it('transform undefined', done => {
+    const value = { v: [0, 1] };
+    new Schema({
+      v: { required: true, transform: v => undefined },
+    }).validate(value, errors => {
+      expect(errors).toBeTruthy();
+      done();
+    });
+  });
 });
