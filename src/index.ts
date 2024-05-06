@@ -16,7 +16,15 @@ import type {
   Values,
 } from './interface';
 import { messages as defaultMessages, newMessages } from './messages';
-import { asyncMap, complementError, convertFieldsError, deepMerge, format, warning } from './util';
+import {
+  asyncMap,
+  complementError,
+  convertFieldsError,
+  deepMerge,
+  format,
+  isEmptyValue,
+  warning,
+} from './util';
 import validators from './validator/index';
 
 export * from './interface';
@@ -146,7 +154,10 @@ class Schema {
             source = { ...source };
           }
           value = source[z] = rule.transform(value);
-          rule.type ??= (Array.isArray(value) ? 'array' : typeof value) as RuleType;
+          const type = rule.type || ((Array.isArray(value) ? 'array' : typeof value) as RuleType);
+          if (!isEmptyValue(value, type)) {
+            rule.type = type;
+          }
         }
         if (typeof rule === 'function') {
           rule = {
