@@ -171,16 +171,6 @@ describe('number', () => {
       done();
     });
   });
-  it('[] is required', done => {
-    const value = { v: [] };
-    new Schema({
-      v: { required: true },
-    }).validate(value, errors => {
-      expect(errors).toBeTruthy();
-      expect(errors[0].message).toBe('v is required');
-      done();
-    });
-  });
   it('empty array message is "v is required"', done => {
     const value = { v: [] };
     new Schema({
