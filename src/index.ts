@@ -154,9 +154,8 @@ class Schema {
             source = { ...source };
           }
           value = source[z] = rule.transform(value);
-          const type = rule.type || ((Array.isArray(value) ? 'array' : typeof value) as RuleType);
-          if (!isEmptyValue(value, type)) {
-            rule.type = type;
+          if (value !== undefined && value !== null) {
+            rule.type = rule.type || ((Array.isArray(value) ? 'array' : typeof value) as RuleType);
           }
         }
         if (typeof rule === 'function') {
