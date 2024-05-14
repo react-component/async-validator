@@ -167,6 +167,17 @@ describe('number', () => {
       v: { required: true, transform: v => undefined },
     }).validate(value, errors => {
       expect(errors).toBeTruthy();
+      expect(errors[0].message).toBe('v is required');
+      done();
+    });
+  });
+  it('empty array message is "v is required"', done => {
+    const value = { v: [] };
+    new Schema({
+      v: { required: true, transform: () => [] },
+    }).validate(value, errors => {
+      expect(errors).toBeTruthy();
+      expect(errors[0].message).toBe('v is required');
       done();
     });
   });
