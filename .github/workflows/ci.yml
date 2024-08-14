@@ -82,7 +82,7 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
 
       - name: compile
-        run: npm run compile
+        run: npm run tsc && npm run compile
 
     needs: setup
 
