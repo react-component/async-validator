@@ -65,6 +65,22 @@ describe('tel', () => {
     );
   });
 
+  it('works for us phone number with dashes', done => {
+    new Schema({
+      v: {
+        type: 'tel',
+      },
+    }).validate(
+      {
+        v: '415-555-0132',
+      },
+      errors => {
+        expect(errors).toBe(null);
+        done();
+      },
+    );
+  });
+
   it('works for us phone number with brackets, dashes, and spaces', done => {
     new Schema({
       v: {
@@ -76,6 +92,54 @@ describe('tel', () => {
       },
       errors => {
         expect(errors).toBe(null);
+        done();
+      },
+    );
+  });
+
+  it('works for us phone number with nonbreaking hyphen', done => {
+    new Schema({
+      v: {
+        type: 'tel',
+      },
+    }).validate(
+      {
+        v: '415‑555‑0132',
+      },
+      errors => {
+        expect(errors).toBe(null);
+        done();
+      },
+    );
+  });
+
+  it('forbid multiple spaces in a row', done => {
+    new Schema({
+      v: {
+        type: 'tel',
+      },
+    }).validate(
+      {
+        v: '123   456',
+      },
+      errors => {
+        expect(errors[0].message).toBe('v is not a valid tel');
+        done();
+      },
+    );
+  });
+
+  it('forbid multiple dashes in a row', done => {
+    new Schema({
+      v: {
+        type: 'tel',
+      },
+    }).validate(
+      {
+        v: '123---456',
+      },
+      errors => {
+        expect(errors[0].message).toBe('v is not a valid tel');
         done();
       },
     );
@@ -98,5 +162,4 @@ describe('tel', () => {
       },
     );
   });
-
 });
