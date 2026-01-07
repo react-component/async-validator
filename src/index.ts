@@ -201,7 +201,7 @@ class Schema {
           if (!options.suppressWarning && errorList.length) {
             Schema.warning('async-validator:', errorList);
           }
-          if (errorList.length && rule.message !== undefined) {
+          if (errorList.length && rule.message !== undefined && rule.message !== null) {
             errorList = [].concat(rule.message);
           }
 
