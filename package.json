@@ -29,7 +29,7 @@
     "gh-pages": "npm run docs:build && npm run docs:deploy",
     "lint": "eslint src --ext .tsx,.ts,.jsx,.js",
     "now-build": "npm run docs:build",
-    "prepublishOnly": "npm run compile && np --yolo --no-publish",
+    "prepublishOnly": "npm run compile && np --yolo --no-publish --any-branch",
     "prettier": "prettier . --write",
     "postpublish": "npm run gh-pages",
     "start": "dumi dev",
