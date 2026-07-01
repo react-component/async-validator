@@ -12,5 +12,6 @@
       "@@/*": ["src/.umi/*"],
       "@rc-component/async-validator": ["src/index.ts"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".dumirc.ts"]
 }

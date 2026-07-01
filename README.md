@@ -1,84 +1,79 @@
-# @rc-component/async-validator
+<div align="center">
+  <h1>@rc-component/async-validator</h1>
+  <p><sub><a href="https://ant.design"><img alt="Ant Design" height="14" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" style="vertical-align: -0.125em;" /></a> Part of the Ant Design ecosystem.</sub></p>
+  <p>✅ Async validation engine for schema-based form rules.</p>
 
-[![NPM version][npm-image]][npm-url]
-[![npm download][download-image]][download-url]
-[![build status][github-actions-image]][github-actions-url]
-[![Codecov][codecov-image]][codecov-url]
-[![dumi][dumi-image]][dumi-url]
+  <p>
+    <a href="https://npmjs.org/package/@rc-component/async-validator"><img alt="NPM version" src="https://img.shields.io/npm/v/@rc-component/async-validator.svg?style=flat-square"></a>
+    <a href="https://npmjs.org/package/@rc-component/async-validator"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@rc-component/async-validator.svg?style=flat-square"></a>
+    <a href="https://github.com/react-component/async-validator/actions/workflows/test.yml"><img alt="build status" src="https://github.com/react-component/async-validator/actions/workflows/test.yml/badge.svg"></a>
+    <a href="https://app.codecov.io/gh/react-component/async-validator"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/react-component/async-validator/master.svg?style=flat-square"></a>
+    <a href="https://bundlephobia.com/package/@rc-component/async-validator"><img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/@rc-component/async-validator?style=flat-square"></a>
+    <a href="https://github.com/umijs/dumi"><img alt="dumi" src="https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square"></a>
+  </p>
+</div>
 
-[npm-image]: http://img.shields.io/npm/v/@rc-component/async-validator.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/@rc-component/async-validator
-[travis-image]: https://img.shields.io/travis/react-component/async-validator/master?style=flat-square
-[travis-url]: https://travis-ci.com/react-component/async-validator
-[github-actions-image]: https://github.com/react-component/async-validator/actions/workflows/ci.yml/badge.svg
-[github-actions-url]: https://github.com/react-component/async-validator/actions/workflows/ci.yml
-[codecov-image]: https://img.shields.io/codecov/c/github/react-component/async-validator/master.svg?style=flat-square
-[codecov-url]: https://app.codecov.io/gh/react-component/async-validator
-[david-url]: https://david-dm.org/react-component/async-validator
-[david-image]: https://david-dm.org/react-component/async-validator/status.svg?style=flat-square
-[david-dev-url]: https://david-dm.org/react-component/async-validator?type=dev
-[david-dev-image]: https://david-dm.org/react-component/async-validator/dev-status.svg?style=flat-square
-[download-image]: https://img.shields.io/npm/dm/@rc-component/async-validator.svg?style=flat-square
-[download-url]: https://npmjs.org/package/@rc-component/async-validator
-[bundlephobia-url]: https://bundlephobia.com/package/@rc-component/async-validator
-[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/@rc-component/async-validator
-[dumi-url]: https://github.com/umijs/dumi
-[dumi-image]: https://img.shields.io/badge/docs%20by-dumi-blue?style=flat-square
+<p align="center">English | [简体中文](./README.zh-CN.md)</p>
 
-Validate form asynchronous. A variation of https://github.com/freeformsystems/async-validate
+## Highlights
+
+| Area    | Support                                              |
+| ------- | ---------------------------------------------------- |
+| Purpose | Async validation engine for schema-based form rules. |
+| Package | `@rc-component/async-validator`                      |
+| Release | `@rc-component/np` / `rc-np`                         |
 
 ## Install
 
 ```bash
-npm i @rc-component/async-validator
+npm install @rc-component/async-validator
 ```
 
 ## Usage
 
-Basic usage involves defining a descriptor, assigning it to a schema and passing the object to be validated and a callback function to the `validate` method of the schema:
-
-```js
+```tsx | pure
 import Schema from '@rc-component/async-validator';
-const descriptor = {
-  name: {
-    type: 'string',
-    required: true,
-    validator: (rule, value) => value === 'muji',
-  },
-  age: {
-    type: 'number',
-    asyncValidator: (rule, value) => {
-      return new Promise((resolve, reject) => {
-        if (value < 18) {
-          reject('too young'); // reject with error message
-        } else {
-          resolve();
-        }
-      });
-    },
-  },
-};
-const validator = new Schema(descriptor);
-validator.validate({ name: 'muji' }, (errors, fields) => {
-  if (errors) {
-    // validation failed, errors is an array of all errors
-    // fields is an object keyed by field name with an array of
-    // errors per field
-    return handleErrors(errors, fields);
-  }
-  // validation passed
+
+const validator = new Schema({
+  name: { type: 'string', required: true },
 });
 
-// PROMISE USAGE
-validator
-  .validate({ name: 'muji', age: 16 })
-  .then(() => {
-    // validation passed or without error message
-  })
-  .catch(({ errors, fields }) => {
-    return handleErrors(errors, fields);
-  });
+validator.validate({ name: 'Ant Design' }).then(() => {
+  // validation passed
+});
 ```
+
+## API
+
+| API                                     | Description                                |
+| --------------------------------------- | ------------------------------------------ |
+| `new Schema(descriptor)`                | Create a validator from a rule descriptor. |
+| `validate(source, options?, callback?)` | Validate source data and return a Promise. |
+| `messages`                              | Customize validation messages.             |
+
+## Development
+
+```bash
+npm install
+npm start
+npm test
+npm run coverage
+npm run lint
+npm run tsc
+npm run compile
+```
+
+The dumi site runs at `http://localhost:8000`.
+
+## Release
+
+```bash
+npm run prepublishOnly
+```
+
+The release flow is handled by `@rc-component/np` through the `rc-np` command when the package uses the shared release flow.
+
+## Detailed API
 
 ## API
 
@@ -478,4 +473,4 @@ Open coverage/ dir
 
 ## License
 
-Everything is [MIT](https://en.wikipedia.org/wiki/MIT_License).
+@rc-component/async-validator is released under the [MIT](./LICENSE.md) license.
