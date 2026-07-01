@@ -19,7 +19,7 @@ import { messages as defaultMessages, newMessages } from './messages';
 import { asyncMap, complementError, convertFieldsError, deepMerge, format, warning } from './util';
 import validators from './validator/index';
 
-export * from './interface';
+export type * from './interface';
 
 /**
  *  Encapsulates a validation schema.
