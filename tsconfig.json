@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "ignoreDeprecations": "6.0",
+    "strict": false,
+    "types": ["node", "jest"],
     "moduleResolution": "node",
     "baseUrl": "./",
     "jsx": "react",
