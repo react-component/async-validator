@@ -54,7 +54,7 @@ validator.validate({ name: 'Ant Design' }).then(() => {
 ## 本地开发
 
 ```bash
-ut install
+npm install
 npm start
 npm test
 npm run coverage
