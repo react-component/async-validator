@@ -13,7 +13,7 @@
   </p>
 </div>
 
-<p align="center">English | [简体中文](./README.zh-CN.md)</p>
+<p align="center">English | <a href="./README.zh-CN.md">简体中文</a></p>
 
 ## Highlights
 
@@ -54,7 +54,7 @@ validator.validate({ name: 'Ant Design' }).then(() => {
 ## Development
 
 ```bash
-npm install
+ut install
 npm start
 npm test
 npm run coverage
@@ -74,8 +74,6 @@ npm run prepublishOnly
 The release flow is handled by `@rc-component/np` through the `rc-np` command when the package uses the shared release flow.
 
 ## Detailed API
-
-## API
 
 ### Validate
 
