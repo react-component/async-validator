@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": "./",
+    "strict": false,
+    "types": ["node", "jest"],
+    "moduleResolution": "bundler",
     "jsx": "react",
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"],
-      "@rc-component/async-validator": ["src/index.ts"]
+      "@/*": ["./src/*"],
+      "@@/*": ["./src/.umi/*"],
+      "@rc-component/async-validator": ["./src/index.ts"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".dumirc.ts"]
 }
