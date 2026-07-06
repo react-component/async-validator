@@ -99,7 +99,6 @@ class Schema {
 
     function complete(results: (ValidateError | ValidateError[])[]) {
       let errors: ValidateError[] = [];
-      let fields: ValidateFieldsError = {};
 
       function add(e: ValidateError | ValidateError[]) {
         if (Array.isArray(e)) {
@@ -115,7 +114,7 @@ class Schema {
       if (!errors.length) {
         callback(null, source);
       } else {
-        fields = convertFieldsError(errors);
+        const fields: ValidateFieldsError = convertFieldsError(errors);
         (callback as (errors: ValidateError[], fields: ValidateFieldsError) => void)(
           errors,
           fields,
