@@ -148,6 +148,14 @@ describe('number', () => {
         done();
       });
   });
+  it('reinfers transformed type across validations', async () => {
+    const schema = new Schema({
+      v: { required: true, transform: value => value },
+    });
+
+    await expect(schema.validate({ v: 1 })).resolves.toEqual({ v: 1 });
+    await expect(schema.validate({ v: 'value' })).resolves.toEqual({ v: 'value' });
+  });
   it('transform array', done => {
     const value = { v: [0, 1] };
     new Schema({

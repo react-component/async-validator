@@ -140,13 +140,14 @@ class Schema {
       let value = source[z];
       arr.forEach(r => {
         let rule: InternalRuleItem = r;
+        let inferredType: RuleType;
         if (typeof rule.transform === 'function') {
           if (source === source_) {
             source = { ...source };
           }
           value = source[z] = rule.transform(value);
           if (value !== undefined && value !== null) {
-            rule.type = rule.type || ((Array.isArray(value) ? 'array' : typeof value) as RuleType);
+            inferredType = (Array.isArray(value) ? 'array' : typeof value) as RuleType;
           }
         }
         if (typeof rule === 'function') {
@@ -155,6 +156,9 @@ class Schema {
           };
         } else {
           rule = { ...rule };
+          if (inferredType) {
+            rule.type = rule.type || inferredType;
+          }
         }
 
         // Fill validator. Skip if nothing need to validate
