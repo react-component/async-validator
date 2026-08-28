@@ -33,6 +33,39 @@ describe('url', () => {
     );
   });
 
+  it('works for single-label host url', done => {
+    new Schema({
+      v: {
+        type: 'url',
+      },
+    }).validate(
+      {
+        v: 'http://fastapi:3000/mcp',
+      },
+      errors => {
+        expect(errors).toBe(null);
+        done();
+      },
+    );
+  });
+
+  it('rejects invalid single-label host url', done => {
+    new Schema({
+      v: {
+        type: 'url',
+      },
+    }).validate(
+      {
+        v: 'http://-fastapi:3000/mcp',
+      },
+      errors => {
+        expect(errors).toHaveLength(1);
+        expect(errors[0].message).toBe('v is not a valid url');
+        done();
+      },
+    );
+  });
+
   it('works for required empty string', done => {
     new Schema({
       v: {
