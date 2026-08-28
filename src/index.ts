@@ -140,6 +140,9 @@ class Schema {
       let value = source[z];
       arr.forEach(r => {
         let rule: InternalRuleItem = r;
+        if (typeof rule !== 'function') {
+          rule = { ...rule };
+        }
         if (typeof rule.transform === 'function') {
           if (source === source_) {
             source = { ...source };
@@ -153,8 +156,6 @@ class Schema {
           rule = {
             validator: rule,
           };
-        } else {
-          rule = { ...rule };
         }
 
         // Fill validator. Skip if nothing need to validate
